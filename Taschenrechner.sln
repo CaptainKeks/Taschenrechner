@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taschenrechner", "Taschenrechner\Taschenrechner.csproj", "{A10097AE-66AC-4B69-BEF7-961119800211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taschenrechner V1.0", "Taschenrechner V1.0\Taschenrechner V1.0.csproj", "{52413450-B914-4282-860A-3E2363DC49F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Taschenrechner|Any CPU = Taschenrechner|Any CPU
+		Taschenrechner|x64 = Taschenrechner|x64
+		Test|Any CPU = Test|Any CPU
+		Test|x64 = Test|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Debug|x64.ActiveCfg = Debug|x64
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Debug|x64.Build.0 = Debug|x64
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Release|Any CPU.ActiveCfg = Taschenrechner|Any CPU
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Release|x64.ActiveCfg = Release|x64
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Release|x64.Build.0 = Release|x64
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Taschenrechner|Any CPU.ActiveCfg = Taschenrechner|Any CPU
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Taschenrechner|Any CPU.Build.0 = Taschenrechner|Any CPU
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Taschenrechner|x64.ActiveCfg = Taschenrechner|x64
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Taschenrechner|x64.Build.0 = Taschenrechner|x64
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Test|Any CPU.Build.0 = Test|Any CPU
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Test|x64.ActiveCfg = Test|x64
+		{A10097AE-66AC-4B69-BEF7-961119800211}.Test|x64.Build.0 = Test|x64
+		{52413450-B914-4282-860A-3E2363DC49F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Debug|x64.ActiveCfg = Release|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Debug|x64.Build.0 = Release|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Release|x64.ActiveCfg = Release|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Release|x64.Build.0 = Release|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Taschenrechner|Any CPU.ActiveCfg = Debug|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Taschenrechner|Any CPU.Build.0 = Debug|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Taschenrechner|x64.ActiveCfg = Debug|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Taschenrechner|x64.Build.0 = Debug|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Test|x64.ActiveCfg = Debug|Any CPU
+		{52413450-B914-4282-860A-3E2363DC49F4}.Test|x64.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0718BDE4-C124-48EC-94BA-93D276820DE5}
+	EndGlobalSection
+EndGlobal
