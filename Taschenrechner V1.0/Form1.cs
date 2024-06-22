@@ -111,6 +111,7 @@ namespace Taschenrechner_V1._0
             orignalBtn_resultSize = btn_res.Font.Size;
             listBox1.SelectionMode = SelectionMode.MultiExtended;
             TabControl1.SelectedTab = TabControl1.TabPages[""];
+            MessageBox.Show("Tihis is a Test!");
         }
 
         #region Button_Methods
