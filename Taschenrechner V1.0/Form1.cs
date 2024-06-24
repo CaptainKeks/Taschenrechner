@@ -18,7 +18,7 @@ namespace Taschenrechner_V1._0
     public partial class Form1 : Form
     {
         double number1, number2, result;
-        Number actual_number;
+        Button PressedButton;
         Methods actual_method;
         string symbol;
         public string calculated;
@@ -51,27 +51,27 @@ namespace Taschenrechner_V1._0
         #endregion
 
 
-        enum Number
+        enum Button
         {
-            btn_0,
-            btn_1,
-            btn_2,
-            btn_3,
-            btn_4,
-            btn_5,
-            btn_6,
-            btn_7,
-            btn_8,
-            btn_9,
-            zero,
-            semolicon
+            Zero,
+            One,
+            Two,
+            Three,
+            Four,
+            Five,
+            Six,
+            Seven,
+            Eight,
+            Nine,
+            ClearAll,
+            Comma
         }
         enum Methods
         {
-            add,
-            subtract,
-            multiply,
-            divide,
+            Add,
+            Subtract,
+            Multiply,
+            Divide,
             zero
         }
 
@@ -119,7 +119,7 @@ namespace Taschenrechner_V1._0
         private void Btn_add_Click(object sender, EventArgs e)
         {
             GetNumber();
-            actual_method = Methods.add;
+            actual_method = Methods.Add;
             label2.Text = number1 + "+";
             symbol = "+";
         }
@@ -127,7 +127,7 @@ namespace Taschenrechner_V1._0
         private void Btn_sub_Click(object sender, EventArgs e)
         {
             GetNumber();
-            actual_method = Methods.subtract;
+            actual_method = Methods.Subtract;
             label2.Text = number1 + "-";
             symbol = "-";
         }
@@ -135,7 +135,7 @@ namespace Taschenrechner_V1._0
         private void Btn_mult_Click(object sender, EventArgs e)
         {
             GetNumber();
-            actual_method = Methods.multiply;
+            actual_method = Methods.Multiply;
             label2.Text = number1 + "*";
             symbol = "*";
         }
@@ -143,7 +143,7 @@ namespace Taschenrechner_V1._0
         private void Btn_div_Click(object sender, EventArgs e)
         {
             GetNumber();
-            actual_method = Methods.divide;
+            actual_method = Methods.Divide;
             label2.Text = number1 + "/";
             symbol = "/";
         }
@@ -157,15 +157,18 @@ namespace Taschenrechner_V1._0
         private void Btn_res_Click(object sender, EventArgs e)
         {
             number2 = Convert.ToDouble(label1.Text);
-            GetMethod();
+            GetMethod(); // umbenennen für mehr eindeutigkeit
             label1.Text = result.ToString();
             calculated = Convert.ToString(number1) + " " + symbol + " " + Convert.ToString(number2) + " = " + result;
+
+            // Funktion um immer beides Synchronisiert zu updaten
             liste.Add(calculated);
             listBox1.Items.Add(calculated);
+
+            // eigene Funktion um alles zu resetten
             actual_method = Methods.zero;
             GetMethod();
             ResultClicked = true;
-
         }
 
         private void Btn_clear_Click(object sender, EventArgs e)  // initialise evereything
@@ -175,12 +178,11 @@ namespace Taschenrechner_V1._0
             result = 0;
             label1.Text = "0";
             label2.Text = "";
-            actual_number = Number.zero;
+            PressedButton = Button.ClearAll;
             actual_method = Methods.zero;
         }
 
         #endregion
-
 
         #region Button_Numbers
 
@@ -192,105 +194,104 @@ namespace Taschenrechner_V1._0
 
         private void Btn_0_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_0;
-            Calculate();
+            PressedButton = Button.Zero;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_1_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_1;
-            Calculate();
+            PressedButton = Button.One;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_2_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_2;
-            Calculate();
+            PressedButton = Button.Two;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_3_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_3;
-            Calculate();
+            PressedButton = Button.Three;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_4_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_4;
-            Calculate();
+            PressedButton = Button.Four;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_5_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_5;
-            Calculate();
+            PressedButton = Button.Five;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_6_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_6;
-            Calculate();
+            PressedButton = Button.Six;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_7_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_7;
-            Calculate();
+            PressedButton = Button.Seven;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_8_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_8;
-            Calculate();
+            PressedButton = Button.Eight;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_9_Click(object sender, EventArgs e)
         {
-            actual_number = Number.btn_9;
-            Calculate();
+            PressedButton = Button.Nine;
+            ProcessInput();
             ResultClicked = false;
         }
 
         private void Btn_semo_Click(object sender, EventArgs e)
         {
-            actual_number = Number.semolicon;
-            Calculate();
+            PressedButton = Button.Comma;
+            ProcessInput();
             ResultClicked = false;
         }
 
         #endregion
 
-
         private void GetNumber()
         {
             number1 = Convert.ToDouble(label1.Text);
-            actual_number = Number.zero;
-            Calculate();
+            PressedButton = Button.ClearAll;
+            ProcessInput();
         }
 
         private void GetMethod()
         {
             switch (actual_method)             // tracks the method that is klicked
             {
-                case Methods.add:
+                case Methods.Add:
                     result = number1 + number2;
                     break;
-                case Methods.subtract:
+                case Methods.Subtract:
                     result = number1 - number2;
                     break;
-                case Methods.multiply:
+                case Methods.Multiply:
                     result = number1 * number2;
                     break;
-                case Methods.divide:
+                case Methods.Divide:
                     result = number1 / number2;
                     break;
                 case Methods.zero:
@@ -299,179 +300,39 @@ namespace Taschenrechner_V1._0
             }
         }
 
-        private void Calculate()
+        private void ProcessInput()
         {
-
-            switch (actual_number)             // tracks the number that is klicked
+            switch (PressedButton)             // tracks the number that is klicked
             {
-                case Number.btn_0:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "0";
-                    }
-                    else
-                    {
-                        label1.Text = "0";
-                    }
-                    break;
-
-                case Number.btn_1:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "1";
-                    }
-                    else if (label1.Text != "0" && !ResultClicked)
-                    {
-                        label1.Text += "1";
-                    }
-                    else
-                    {
-                        label1.Text = "1";
-                    }
-                    break;
-
-                case Number.btn_2:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "2";
-                    }
-                    else if (label1.Text != "0" && !ResultClicked)
-                    {
-                        label1.Text += "2";
-                    }
-                    else
-                    {
-                        label1.Text = "2";
-                    }
-                    break;
-
-                case Number.btn_3:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "3";
-                    }
-                    else if (label1.Text != "0" && !ResultClicked)
-                    {
-                        label1.Text += "3";
-                    }
-                    else
-                    {
-                        label1.Text = "3";
-                    }
-                    break;
-
-                case Number.btn_4:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "4";
-                    }
-                    else if (label1.Text != "0" && !ResultClicked)
-                    {
-                        label1.Text += "4";
-                    }
-                    else
-                    {
-                        label1.Text = "4";
-                    }
-                    break;
-
-                case Number.btn_5:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "5";
-                    }
-                    else if (label1.Text != "0" && !ResultClicked)
-                    {
-                        label1.Text += "5";
-                    }
-                    else
-                    {
-                        label1.Text = "5";
-                    }
-                    break;
-
-                case Number.btn_6:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "6";
-                    }
-                    else if (label1.Text != "0" && !ResultClicked)
-                    {
-                        label1.Text += "6";
-                    }
-                    else
-                    {
-                        label1.Text = "6";
-                    }
-                    break;
-
-                case Number.btn_7:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "7";
-                    }
-                    else if (label1.Text != "0" && !ResultClicked)
-                    {
-                        label1.Text += "7";
-                    }
-                    else
-                    {
-                        label1.Text = "7";
-                    }
-                    break;
-
-                case Number.btn_8:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "8";
-                    }
-                    else if (label1.Text != "0" && !ResultClicked)
-                    {
-                        label1.Text += "8";
-                    }
-                    else
-                    {
-                        label1.Text = "8";
-                    }
-                    break;
-
-                case Number.btn_9:
-                    if (label1.Text == "0")
-                    {
-                        label1.Text = "9";
-                    }
-                    else if (label1.Text != "0" && !ResultClicked)
-                    {
-                        label1.Text += "9";
-                    }
-                    else
-                    {
-                        label1.Text = "9";
-                    }
-                    break;
-
-                case Number.zero:
-                    label1.Text = "0";
-                    break;
-
-                case Number.semolicon:
-                    if (label1.Text.Contains(',') && !ResultClicked)
+                case Button.Comma:
+                    if (label1.Text.Contains('.') && !ResultClicked)
                     {
                         MessageBox.Show("Es gitb keine zwei Kommas!!");
                     }
-                    else if (label1.Text.Contains(',') && ResultClicked)
+                    else if (ResultClicked)
                     {
                         label1.Text = "0";
-                        label1.Text += ",";
+                        label1.Text += ".";
+                        ResultClicked = false;
                     }
                     else
                     {
-                        label1.Text += ",";
+                        label1.Text += ".";
                     }
                     break;
+                case Button.ClearAll:
+                    label1.Text = "0";
+                    break;
+                default:
+                    string number = Convert.ToString(Convert.ToInt16(PressedButton));
 
+                    if (label1.Text != "0" && !ResultClicked)
+                        label1.Text += number;
+                    else
+                        label1.Text = number;
+
+                    break;
             }
-
         }
 
         private void ListBoxDelete()
@@ -663,7 +524,7 @@ namespace Taschenrechner_V1._0
 
         private void listBox1_MouseUp(object sender, MouseEventArgs e)
         {
-   
+
         }
 
 

@@ -563,25 +563,25 @@ namespace Taschenrechner_V1._0
 
         #endregion
 
-        private Button btn_add;
-        private Button btn_sub;
-        private Button btn_mult;
-        private Button btn_div;
-        private Button btn_1;
-        private Button btn_2;
-        private Button btn_3;
-        private Button btn_6;
-        private Button btn_5;
-        private Button btn_4;
-        private Button btn_9;
-        private Button btn_8;
-        private Button btn_7;
+        private System.Windows.Forms.Button btn_add;
+        private System.Windows.Forms.Button btn_sub;
+        private System.Windows.Forms.Button btn_mult;
+        private System.Windows.Forms.Button btn_div;
+        private System.Windows.Forms.Button btn_1;
+        private System.Windows.Forms.Button btn_2;
+        private System.Windows.Forms.Button btn_3;
+        private System.Windows.Forms.Button btn_6;
+        private System.Windows.Forms.Button btn_5;
+        private System.Windows.Forms.Button btn_4;
+        private System.Windows.Forms.Button btn_9;
+        private System.Windows.Forms.Button btn_8;
+        private System.Windows.Forms.Button btn_7;
         private Label label1;
-        private Button btn_clear;
-        private Button btn_res;
-        private Button btn_0;
-        private Button btn_empty;
-        private Button btn_semo;
+        private System.Windows.Forms.Button btn_clear;
+        private System.Windows.Forms.Button btn_res;
+        private System.Windows.Forms.Button btn_0;
+        private System.Windows.Forms.Button btn_empty;
+        private System.Windows.Forms.Button btn_semo;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
         private Label label2;
@@ -589,11 +589,11 @@ namespace Taschenrechner_V1._0
         private TabControl TabControl1;
         private TabPage Taschenrechner;
         private TabPage Verlauf;
-        private Button Btn_Delete;
+        private System.Windows.Forms.Button Btn_Delete;
         private ListBox listBox1;
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
-        private Button Btn_Delete_all;
+        private System.Windows.Forms.Button Btn_Delete_all;
     }
 }
 
