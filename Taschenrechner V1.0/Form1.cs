@@ -17,9 +17,11 @@ namespace Taschenrechner_V1._0
 {
     public partial class Form1 : Form
     {
+        private System.Windows.Forms.Button currentButton;
+
         double number1, number2, result;
-        Button PressedButton;
-        Methods actual_method;
+        Buttons PressedButton;
+        Buttons actual_arithmetic;
         string symbol;
         public string calculated;
         private Rectangle OriganlFormRect;
@@ -51,7 +53,7 @@ namespace Taschenrechner_V1._0
         #endregion
 
 
-        enum Button
+        enum Buttons
         {
             Zero,
             One,
@@ -64,10 +66,7 @@ namespace Taschenrechner_V1._0
             Eight,
             Nine,
             ClearAll,
-            Comma
-        }
-        enum Methods
-        {
+            Comma,
             Add,
             Subtract,
             Multiply,
@@ -108,7 +107,7 @@ namespace Taschenrechner_V1._0
             originalListBox_Size = listBox1.Font.Size;
             originalListDel_Size = Btn_Delete.Font.Size;
             originalListClear_Size = Btn_Delete_all.Font.Size;
-            orignalBtn_resultSize = btn_res.Font.Size;
+            orignalBtn_resultSize = Btn_res.Font.Size;
             listBox1.SelectionMode = SelectionMode.MultiExtended;
             TabControl1.SelectedTab = TabControl1.TabPages[""];
         }
@@ -119,56 +118,68 @@ namespace Taschenrechner_V1._0
         private void Btn_add_Click(object sender, EventArgs e)
         {
             GetNumber();
-            actual_method = Methods.Add;
-            label2.Text = number1 + "+";
+            actual_arithmetic = Buttons.Add;
+            label2.Text = number1 + " +";
             symbol = "+";
         }
 
         private void Btn_sub_Click(object sender, EventArgs e)
         {
             GetNumber();
-            actual_method = Methods.Subtract;
-            label2.Text = number1 + "-";
+            actual_arithmetic = Buttons.Subtract;
+            label2.Text = number1 + " -";
             symbol = "-";
         }
 
         private void Btn_mult_Click(object sender, EventArgs e)
         {
             GetNumber();
-            actual_method = Methods.Multiply;
-            label2.Text = number1 + "*";
+            actual_arithmetic = Buttons.Multiply;
+            label2.Text = number1 + " *";
             symbol = "*";
         }
 
         private void Btn_div_Click(object sender, EventArgs e)
         {
             GetNumber();
-            actual_method = Methods.Divide;
-            label2.Text = number1 + "/";
+            actual_arithmetic = Buttons.Divide;
+            label2.Text = number1 + " /";
             symbol = "/";
         }
 
-        /// <summary>
-        /// Die rechnung als liste speichern
-        /// </summary>
+
+        // Die rechnung als liste speichern
 
         private List<string> liste = new List<string>();
 
         private void Btn_res_Click(object sender, EventArgs e)
         {
             number2 = Convert.ToDouble(label1.Text);
-            GetMethod(); // umbenennen für mehr eindeutigkeit
-            label1.Text = result.ToString();
+            GetArithmeticOperation();
             calculated = Convert.ToString(number1) + " " + symbol + " " + Convert.ToString(number2) + " = " + result;
+            label1.Text = result.ToString();
+            AddToList();
+            InitializeCalaculation();
+            ResultClicked = false;
+        }
 
-            // Funktion um immer beides Synchronisiert zu updaten
+        private void AddToList()
+        {
             liste.Add(calculated);
             listBox1.Items.Add(calculated);
+        }
 
-            // eigene Funktion um alles zu resetten
-            actual_method = Methods.zero;
-            GetMethod();
+        private void InitializeCalaculation()
+        {
+            actual_arithmetic = Buttons.zero;
+            GetArithmeticOperation();
             ResultClicked = true;
+            number1 = 0;
+            number2 = 0;
+            result = 0;
+            symbol = "";
+
+
         }
 
         private void Btn_clear_Click(object sender, EventArgs e)  // initialise evereything
@@ -176,15 +187,41 @@ namespace Taschenrechner_V1._0
             number1 = 0;
             number2 = 0;
             result = 0;
+            symbol = "";
             label1.Text = "0";
             label2.Text = "";
-            PressedButton = Button.ClearAll;
-            actual_method = Methods.zero;
+            PressedButton = Buttons.ClearAll;
+            actual_arithmetic = Buttons.zero;
         }
 
         #endregion
 
         #region Button_Numbers
+        string label_number;
+        double clicked_number;
+
+        private void ActivateButton(object btnSender)
+        {
+            if (btnSender != null)
+            {
+                if (currentButton != (System.Windows.Forms.Button)btnSender || currentButton == (System.Windows.Forms.Button)btnSender)
+                {
+                    currentButton = (System.Windows.Forms.Button)btnSender;
+                    label_number = currentButton.Text;
+
+                    if (label1.Text != "0" && !ResultClicked)
+                    {
+                        label1.Text += label_number;
+                    }
+                    else
+                    {
+                        label1.Text = label_number;
+                    }
+                }
+                
+                btnSender = null;
+            }
+        }
 
 
         private void Btn_empty_Click(object sender, EventArgs e)
@@ -194,77 +231,57 @@ namespace Taschenrechner_V1._0
 
         private void Btn_0_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Zero;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_1_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.One;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_2_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Two;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_3_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Three;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_4_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Four;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_5_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Five;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_6_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Six;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_7_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Seven;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_8_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Eight;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_9_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Nine;
-            ProcessInput();
-            ResultClicked = false;
+            ActivateButton(sender);
         }
 
         private void Btn_semo_Click(object sender, EventArgs e)
         {
-            PressedButton = Button.Comma;
+            PressedButton = Buttons.Comma;
             ProcessInput();
             ResultClicked = false;
         }
@@ -274,27 +291,27 @@ namespace Taschenrechner_V1._0
         private void GetNumber()
         {
             number1 = Convert.ToDouble(label1.Text);
-            PressedButton = Button.ClearAll;
+            PressedButton = Buttons.ClearAll;
             ProcessInput();
         }
 
-        private void GetMethod()
+        private void GetArithmeticOperation()
         {
-            switch (actual_method)             // tracks the method that is klicked
+            switch (actual_arithmetic)             // tracks the method that is klicked
             {
-                case Methods.Add:
+                case Buttons.Add:
                     result = number1 + number2;
                     break;
-                case Methods.Subtract:
+                case Buttons.Subtract:
                     result = number1 - number2;
                     break;
-                case Methods.Multiply:
+                case Buttons.Multiply:
                     result = number1 * number2;
                     break;
-                case Methods.Divide:
+                case Buttons.Divide:
                     result = number1 / number2;
                     break;
-                case Methods.zero:
+                case Buttons.zero:
                     label2.Text = "";
                     break;
             }
@@ -304,23 +321,23 @@ namespace Taschenrechner_V1._0
         {
             switch (PressedButton)             // tracks the number that is klicked
             {
-                case Button.Comma:
-                    if (label1.Text.Contains('.') && !ResultClicked)
+                case Buttons.Comma:
+                    if (label1.Text.Contains(',') && !ResultClicked)
                     {
-                        MessageBox.Show("Es gitb keine zwei Kommas!!");
+                        MessageBox.Show("Es gitb keine zwei Kommas!");
                     }
                     else if (ResultClicked)
                     {
                         label1.Text = "0";
-                        label1.Text += ".";
+                        label1.Text += ",";
                         ResultClicked = false;
                     }
                     else
                     {
-                        label1.Text += ".";
+                        label1.Text += ",";
                     }
                     break;
-                case Button.ClearAll:
+                case Buttons.ClearAll:
                     label1.Text = "0";
                     break;
                 default:
@@ -369,7 +386,7 @@ namespace Taschenrechner_V1._0
             ResizeControl(btn_sub, originalBtn_subSize);
             ResizeControl(btn_mult, originalBtn_multSIze);
             ResizeControl(btn_div, originalBtn_divSize);
-            ResizeControl(btn_res, orignalBtn_resultSize);
+            ResizeControl(Btn_res, orignalBtn_resultSize);
             ResizeControl(btn_semo, originalBtn_semSize);
             ResizeControl(btn_empty, originalBtn_deleteSize);
             ResizeControl(btn_clear, originalBtn_clearSize);
@@ -487,7 +504,7 @@ namespace Taschenrechner_V1._0
 
                 case Keys.Enter:
                     {
-                        btn_res.PerformClick();
+                        Btn_res.PerformClick();
                     }
                     break;
 
